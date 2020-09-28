@@ -1,0 +1,6 @@
+Django
+djangorestframework-camel-case
+requests
+django-cors-headers
+djangorestframework
+django-filter
