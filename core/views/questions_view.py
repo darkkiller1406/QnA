@@ -75,6 +75,6 @@ class QuestionDetailView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, question_id):
-        snippet = self.get_object(question_id)
-        snippet.delete()
+        question = self.get_object(question_id)
+        question.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
