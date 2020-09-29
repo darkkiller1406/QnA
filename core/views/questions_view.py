@@ -22,8 +22,6 @@ class QuestionFilter(DjangoFilterBackend):
 
 
 class QuestionsView(APIView):
-    # authentication_classes = [authentication.TokenAuthentication]
-    permission_classes = [IsAuthenticated]
     filter_fields = ('tags', 'tags__code', 'tags__name')
 
     def get(self, request):

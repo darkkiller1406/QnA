@@ -9,6 +9,8 @@ from core.serializers import UserLoginSerializer
 
 
 class LoginView(APIView):
+    permission_classes = []
+
     def post(self, request):
         serializer = UserLoginSerializer(data=request.data)
         if serializer.is_valid():
@@ -27,12 +29,6 @@ class LoginView(APIView):
                 }
                 return Response(data, status=status.HTTP_200_OK)
 
-            return Response({
-                'error_message': 'Username or password is incorrect!',
-                'error_code': 400
-            }, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'error_message': 'Username or password is incorrect!'}, status=status.HTTP_400_BAD_REQUEST)
 
-        return Response({
-            'error_messages': serializer.errors,
-            'error_code': 400
-        }, status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

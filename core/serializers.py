@@ -1,3 +1,5 @@
+from abc import ABC
+
 from django.contrib.auth.models import User
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
@@ -46,7 +48,22 @@ class UserSerializer(ModelSerializer):
         extra_kwargs = {'password': {'write_only': True}}
 
 
-class UserLoginSerializer(ModelSerializer):
-    class Meta:
-        model = User
-        fields = ('username', 'password')
+class UserLoginSerializer(serializers.Serializer):
+    username = serializers.CharField(max_length=255)
+    password = serializers.CharField(max_length=128, write_only=True)
+
+    def validate(self, data):
+        username = data.get("username", None)
+        password = data.get("password", None)
+        if username is None:
+            raise serializers.ValidationError(
+                'This field is required.'
+            )
+        if password is None:
+            raise serializers.ValidationError(
+                'This field is required.'
+            )
+        return {
+            'username': username,
+            'password': password
+        }
