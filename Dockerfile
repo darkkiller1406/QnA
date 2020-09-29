@@ -13,4 +13,4 @@ USER uwsgi
 
 EXPOSE 8080 8080
 
-CMD ["uwsgi", "--http", "0.0.0.0:8080", "--module", "QnA.wsgi"]
+CMD python manage.py runserver 0.0.0.0:8080
