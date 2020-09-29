@@ -11,6 +11,6 @@ RUN groupadd -r uwsgi && useradd -r -u 1000 -g uwsgi uwsgi
 RUN chown -R uwsgi .
 USER uwsgi
 
-EXPOSE 8080 8888
+EXPOSE 8080 8080
 
-CMD ["uwsgi", "-L", "--socket", "0.0.0.0:8080", "--module", "QnA.wsgi", "--master", "--processes", "2", "--threads", "2", "--max-requests", "250"]
+CMD ["uwsgi", "--http", "0.0.0.0:8080", "--module", "QnA.wsgi"]
