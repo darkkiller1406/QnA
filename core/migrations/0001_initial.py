@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('title', models.CharField(max_length=255)),
                 ('question', models.TextField()),
-                ('status', models.BooleanField(choices=[(True, 'Open'), (False, 'Close')], default=True)),
+                ('status', models.CharField(choices=[('open', 'Open'), ('close', 'Close')], default='open', max_length=10)),
                 ('vote', models.IntegerField()),
             ],
         ),
@@ -29,7 +29,6 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=100)),
-                ('questions', models.ManyToManyField(blank=True, to='core.Question')),
             ],
         ),
         migrations.CreateModel(

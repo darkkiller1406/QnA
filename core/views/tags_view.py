@@ -1,13 +1,13 @@
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 
-from core.models import Answer
+from core.models import Tag
 from core.pagination import StandardResultsSetPagination
-from core.serializers import AnswerSerializer
+from core.serializers import TagSerializer
 
 
-class AnswersView(viewsets.ModelViewSet):
+class TagsView(viewsets.ModelViewSet):
     pagination_class = StandardResultsSetPagination
-    queryset = Answer.objects.all()
+    queryset = Tag.objects.all()
     permission_classes = (IsAuthenticated,)
-    serializer_class = AnswerSerializer
+    serializer_class = TagSerializer
