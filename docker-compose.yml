@@ -1,0 +1,7 @@
+version: '3.3'
+services:
+  qna-api:
+    image: qna-api
+    container_name: qna-api
+    ports:
+      - "8080:8080"

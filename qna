@@ -1,0 +1,29 @@
+#!/bin/bash
+set -ex
+
+function build_containers() {
+  docker build --tag qna-api .
+}
+
+function containers_up() {
+  docker-compose up
+}
+
+function containers_down() {
+  docker-compose down --volumes
+}
+
+function makemigrations() {
+  docker exec qna-api python manage.py makemigrations
+  docker exec qna-api python manage.py migrate
+}
+
+if [ $1 = 'build' ]; then
+  build_containers
+elif [ $1 = 'makemigrations' ]; then
+  makemigrations
+elif [ $1 = 'up' ]; then
+  containers_up
+else
+  containers_down
+fi

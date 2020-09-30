@@ -34,6 +34,16 @@ class QuestionsView(APIView):
         return Response(serializer.data)
 
     def post(self, request):
+        """
+        @param request:
+        {
+            "title": string,
+            "question": string,
+            "status": string,
+            "vote": integer,
+            "tags": [integer(id of tag)...]
+        }
+        """
         serializer = QuestionSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
